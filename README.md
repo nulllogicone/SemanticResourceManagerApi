@@ -1,3 +1,3 @@
 # SemanticResourceManagerApi
 
-For aspnet labels
+For asp.net labels
