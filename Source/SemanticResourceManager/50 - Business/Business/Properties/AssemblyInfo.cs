@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SemanticResourceManager.Common")]
+[assembly: AssemblyTitle("SemanticResourceManager.Business")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SemanticResourceManager.Common")]
+[assembly: AssemblyProduct("Business")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1b8f0bc3-42f5-4d80-8112-ed80c423816a")]
+[assembly: Guid("a5c87289-9f01-44c1-ac5a-dbbe2b03aed1")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
-namespace Common
+namespace SemanticResourceManager.Common
 {
     public static class DependencyFactory
     {
