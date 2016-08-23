@@ -37,8 +37,8 @@ namespace SemanticResourceManagerService
                 options.SingleApiVersion(new Info
                 {
                     Version = "v1",
-                    Title = "Geo Search API",
-                    Description = "A simple api to search using geo location in Elasticsearch",
+                    Title = "Semantic Resource Manager Api",
+                    Description = "A simple api to manage resources",
                     TermsOfService = "None"
                 });
                 options.DescribeAllEnumsAsStrings();
@@ -51,7 +51,10 @@ namespace SemanticResourceManagerService
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
+
 
             app.UseSwagger();
             app.UseSwaggerUi();
