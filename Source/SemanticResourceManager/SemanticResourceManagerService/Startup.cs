@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.Swagger.Model;
 
 namespace SemanticResourceManagerService
 {
@@ -29,6 +30,19 @@ namespace SemanticResourceManagerService
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddSwaggerGen();
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Geo Search API",
+                    Description = "A simple api to search using geo location in Elasticsearch",
+                    TermsOfService = "None"
+                });
+                options.DescribeAllEnumsAsStrings();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +52,9 @@ namespace SemanticResourceManagerService
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
     }
 }
