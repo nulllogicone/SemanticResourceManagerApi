@@ -37,6 +37,7 @@ namespace SemanticResourceManagerService.Controllers
 
             var resx = new ResourceEntity("ApplicationName", "en");
             resx.Label = $"first tests to store resources for [{id}]";
+            resx.Description = $"Added {DateTime.Now}";
 
             var constr = appSettings.semanticresourcemanager_AzureStorageConnectionString;
             var storageClient = new StorageClient(constr);
