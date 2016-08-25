@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -20,6 +21,7 @@ namespace SemanticResourceManagerService
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+            
             Configuration = builder.Build();
         }
 
@@ -31,6 +33,19 @@ namespace SemanticResourceManagerService
             // Add framework services.
             services.AddMvc();
 
+            // Options
+            services.AddOptions();
+            services.Configure<AppSettings>(Configuration.GetSection("MicrosoftAzureStorage"));
+
+            //services.Configure<MvcOptions>(options =>
+            //{
+            //    //mvc options
+            //});
+
+            //var section = Configuration.GetSection("MicrosoftAzureStorage");
+            //services.Configure<AppSettings>(section);
+
+            // Swagger config
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
