@@ -8,6 +8,11 @@ namespace SemanticResourceManagerService
 {
     public class ResourceEntity : TableEntity
     {
+        public ResourceEntity()
+        {
+            
+        }
+
         public ResourceEntity(string partitionKey, string rowKey)
         {
             PartitionKey = partitionKey;

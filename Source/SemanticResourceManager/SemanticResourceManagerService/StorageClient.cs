@@ -12,21 +12,38 @@ namespace SemanticResourceManagerService
 {
     public class StorageClient
     {
-        private CloudTable resourceTable;
+        private readonly CloudTable _resourceTable;
 
         public StorageClient(string storageConnectionString)
         {
             var storageAccount = CloudStorageAccount.Parse(storageConnectionString);
             var tableClient = storageAccount.CreateCloudTableClient();
-            resourceTable = tableClient.GetTableReference("resources");
-            resourceTable.CreateIfNotExists();
+            _resourceTable = tableClient.GetTableReference("resources");
+            _resourceTable.CreateIfNotExists();
         }
-        public void UpsertResource(ResourceEntity resourceEntity)
+
+        public async Task<List<ResourceEntity>> GetAllResourceEntityAsync()
         {
-            TableOperation insertOperation = TableOperation.Insert(resourceEntity);
+            var resx = new List<ResourceEntity>();
+            var getAllQuery = new TableQuery<ResourceEntity>();
+            TableContinuationToken token = null;
+            do
+            {
+                var queryResult = await _resourceTable.ExecuteQuerySegmentedAsync(getAllQuery, token);
+                resx.AddRange(queryResult);
+                token = queryResult.ContinuationToken;
+            } while (token != null);
+            return resx;
+
+
+        }
+        public async Task<TableResult> UpsertResourceAsync(ResourceEntity resourceEntity)
+        {
+            var insertOperation = TableOperation.InsertOrMerge(resourceEntity);
 
             // Execute the insert operation.
-            resourceTable.Execute(insertOperation);
+            var result = await _resourceTable.ExecuteAsync(insertOperation);
+            return result;
         }
     }
 }
