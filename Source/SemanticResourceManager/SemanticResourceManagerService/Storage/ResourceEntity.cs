@@ -15,6 +15,12 @@ namespace SemanticResourceManagerService.Storage
             RowKey = rowKey;
         }
 
+        public string CultureName
+        {
+            get { return RowKey; }
+            set { RowKey = value; }
+        }
+
         public string Label { get; set; }
         public string Description { get; set; }
     }
