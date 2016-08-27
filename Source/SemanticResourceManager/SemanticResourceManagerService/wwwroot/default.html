@@ -5,7 +5,30 @@
     <title>Semantic Resource Manager</title>
 </head>
 <body>
-<h1>Semantic Resource Manager Api</h1>
-<p>Central management of resources <a href="/swagger/ui">swagger</a></p>
+    <h1>Semantic Resource Manager Api</h1>
+    <p>Central management of resources, use <a href="/swagger/ui">swagger</a> to experiment</p>
+    <h2>Specification</h2>
+    <p>A resource is a set of properties for a specific concept of a user interface element (like a button or error message).</p>
+    <h3>Key</h3>
+    <p>
+        To uniquely identify a resource you must provide
+        <ul>
+            <li>ApplicationName</li>
+            <li>ElementUniqueIdentifier</li>
+            <li>Language and Culture of the values</li>
+        </ul>
+    </p>
+<h3>Values</h3>
+All resources share the same set of attributes
+    <dl>
+        <dt>Title</dt>
+        <dd>Short header</dd>
+        
+        <dt>Description</dt>
+        <dd>A descriptive paragraph about the resource</dd>
+        
+        <dt>IconUrl</dt>
+        <dd>A url to a small icon representing the resource</dd>
+    </dl>
 </body>
 </html>
