@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
-using Microsoft.Framework.Configuration;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace SemanticResourceManagerService
+namespace SemanticResourceManagerService.Storage
 {
     public class StorageClient
     {
