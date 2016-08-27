@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -37,14 +32,6 @@ namespace SemanticResourceManagerService
             services.AddOptions();
             services.Configure<AppSettings>(Configuration.GetSection("MicrosoftAzureStorage"));
 
-            //services.Configure<MvcOptions>(options =>
-            //{
-            //    //mvc options
-            //});
-
-            //var section = Configuration.GetSection("MicrosoftAzureStorage");
-            //services.Configure<AppSettings>(section);
-
             // Swagger config
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
@@ -58,6 +45,9 @@ namespace SemanticResourceManagerService
                 });
                 options.DescribeAllEnumsAsStrings();
             });
+
+            // ApplicationInsights
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,9 +60,12 @@ namespace SemanticResourceManagerService
             app.UseStaticFiles();
             app.UseMvc();
 
-
+            // Add Swagger middleware
             app.UseSwagger();
             app.UseSwaggerUi();
+
+            // Add Application Insights monitoring to the request pipeline as a very first middleware.
+            app.UseApplicationInsightsRequestTelemetry();
         }
     }
 }
